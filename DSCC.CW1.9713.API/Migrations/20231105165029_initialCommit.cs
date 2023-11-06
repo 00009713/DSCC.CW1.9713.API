@@ -5,7 +5,7 @@
 namespace DSCC.CW1._9713.API.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCommit : Migration
+    public partial class initialCommit : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
