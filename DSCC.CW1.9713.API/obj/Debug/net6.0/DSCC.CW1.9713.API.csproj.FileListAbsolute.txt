@@ -82,8 +82,3 @@ C:\SG\Git\DSCC.CW1.9713.API\DSCC.CW1.9713.API\obj\Debug\net6.0\DSCC.CW1.9713.API
 C:\SG\Git\DSCC.CW1.9713.API\DSCC.CW1.9713.API\obj\Debug\net6.0\ref\DSCC.CW1.9713.API.dll
 C:\SG\Git\DSCC.CW1.9713.API\DSCC.CW1.9713.API\bin\Debug\net6.0\Npgsql.dll
 C:\SG\Git\DSCC.CW1.9713.API\DSCC.CW1.9713.API\bin\Debug\net6.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
-C:\SG\Git\DSCC.CW1.9713.API\DSCC.CW1.9713.API\bin\Debug\net6.0\app\web.config
-C:\SG\Git\DSCC.CW1.9713.API\DSCC.CW1.9713.API\bin\Debug\net6.0\app\appsettings.Development.json
-C:\SG\Git\DSCC.CW1.9713.API\DSCC.CW1.9713.API\bin\Debug\net6.0\app\appsettings.json
-C:\SG\Git\DSCC.CW1.9713.API\DSCC.CW1.9713.API\bin\Debug\net6.0\app\DSCC.CW1.9713.API.deps.json
-C:\SG\Git\DSCC.CW1.9713.API\DSCC.CW1.9713.API\bin\Debug\net6.0\app\DSCC.CW1.9713.API.runtimeconfig.json

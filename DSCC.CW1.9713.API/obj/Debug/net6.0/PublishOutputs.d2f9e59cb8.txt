@@ -32,6 +32,8 @@ C:\SG\Git\DSCC.CW1.9713.API\app\Microsoft.IdentityModel.Tokens.dll
 C:\SG\Git\DSCC.CW1.9713.API\app\Microsoft.OpenApi.dll
 C:\SG\Git\DSCC.CW1.9713.API\app\Microsoft.SqlServer.Server.dll
 C:\SG\Git\DSCC.CW1.9713.API\app\Microsoft.Win32.SystemEvents.dll
+C:\SG\Git\DSCC.CW1.9713.API\app\Npgsql.dll
+C:\SG\Git\DSCC.CW1.9713.API\app\Npgsql.EntityFrameworkCore.PostgreSQL.dll
 C:\SG\Git\DSCC.CW1.9713.API\app\Swashbuckle.AspNetCore.Swagger.dll
 C:\SG\Git\DSCC.CW1.9713.API\app\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\SG\Git\DSCC.CW1.9713.API\app\Swashbuckle.AspNetCore.SwaggerUI.dll
