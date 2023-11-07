@@ -7,44 +7,48 @@ namespace DSCC.CW1._9713.API.Services
     public class CustomerService : IService<Customer>
     {
         private readonly AppDbContext dbContext;
+
         public CustomerService(AppDbContext dbContext)
         {
             this.dbContext = dbContext;
         }
-        public void Create(Customer item)
+
+        public async Task CreateAsync(Customer item)
         {
             dbContext.Add(item);
-            Save();
+            await SaveAsync();
         }
 
-        public void Delete(int Id)
+        public async Task DeleteAsync(int Id)
         {
-            var customer = dbContext.Customers.Find(Id);
-            dbContext.Customers.Remove(customer);
-            Save();
+            var customer = await dbContext.Customers.FindAsync(Id);
+            if (customer != null)
+            {
+                dbContext.Customers.Remove(customer);
+                await SaveAsync();
+            }
         }
 
-        public IEnumerable<Customer> GetAll()
+        public async Task<IEnumerable<Customer>> GetAllAsync()
         {
-            return dbContext.Customers.ToList();
+            return await dbContext.Customers.ToListAsync();
         }
 
-        public Customer GetById(int Id)
+        public async Task<Customer?> GetByIdAsync(int Id)
         {
-            var customer = dbContext.Customers.Find(Id);
-            return customer;
+            return await dbContext.Customers.FindAsync(Id);
         }
 
-        public void Update(Customer item)
+        public async Task UpdateAsync(Customer item)
         {
             dbContext.Entry(item).State = EntityState.Modified;
-            Save();
+            await SaveAsync();
         }
 
         // Method for saving the changes
-        public void Save()
+        public async Task SaveAsync()
         {
-            dbContext.SaveChanges();
+            await dbContext.SaveChangesAsync();
         }
     }
 }

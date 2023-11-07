@@ -16,30 +16,31 @@ namespace DSCC.CW1._9713.API.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAllCustomers()
+        public async Task<IActionResult> GetAllCustomers()
         {
-            return Ok(_customerService.GetAll());
+            var customers = await _customerService.GetAllAsync();
+            return Ok(customers);
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteCustomer(int id)
+        public async Task<IActionResult> DeleteCustomer(int id)
         {
-            var customer = _customerService.GetById(id);
+            var customer = await _customerService.GetByIdAsync(id);
             if (customer == null)
             {
                 return NotFound();
             }
 
-            _customerService.Delete(id);
+            await _customerService.DeleteAsync(id);
             return Ok(customer);
         }
 
         [HttpPost]
-        public IActionResult CreateCustomer(Customer customer) 
+        public async Task<IActionResult> CreateCustomer([FromBody] Customer customer)
         {
             if (ModelState.IsValid)
             {
-                _customerService.Create(customer);
+                await _customerService.CreateAsync(customer);
                 return CreatedAtAction(nameof(GetCustomer), new { id = customer.Id }, customer);
             }
 
@@ -47,35 +48,35 @@ namespace DSCC.CW1._9713.API.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdateCustomer(int id, Customer updatingCustomer) 
+        public async Task<IActionResult> UpdateCustomer(int id, [FromBody] Customer updatingCustomer)
         {
             if (id != updatingCustomer.Id)
             {
-                return BadRequest("User is not exists in database");
+                return BadRequest("User does not exist in the database");
             }
 
-            var existingOrder = _customerService.GetById(id);
+            var existingCustomer = await _customerService.GetByIdAsync(id);
 
-            if (existingOrder == null)
+            if (existingCustomer == null)
             {
                 return NotFound();
             }
 
-            // Update the properties of the existing order with the new values.
-            existingOrder.Name = updatingCustomer.Name;
-            existingOrder.Email = updatingCustomer.Email;
-            existingOrder.City = updatingCustomer.City;
-            existingOrder.Country = updatingCustomer.Country;
-            existingOrder.Phone = updatingCustomer.Phone;
+            // Update the properties of the existing customer with the new values.
+            existingCustomer.Name = updatingCustomer.Name;
+            existingCustomer.Email = updatingCustomer.Email;
+            existingCustomer.City = updatingCustomer.City;
+            existingCustomer.Country = updatingCustomer.Country;
+            existingCustomer.Phone = updatingCustomer.Phone;
 
-            _customerService.Update(existingOrder);
-            return Ok(existingOrder);
+            await _customerService.UpdateAsync(existingCustomer);
+            return Ok(existingCustomer);
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetCustomer(int id)
+        public async Task<IActionResult> GetCustomer(int id)
         {
-            var customer = _customerService.GetById(id);
+            var customer = await _customerService.GetByIdAsync(id);
             if (customer == null)
             {
                 return NotFound();

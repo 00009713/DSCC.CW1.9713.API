@@ -13,6 +13,14 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+{
+    builder.WithOrigins("http://example.com",
+        "http://ec2-13-51-193-110.eu-north-1.compute.amazonaws.com/")
+           .AllowAnyMethod()
+           .AllowAnyHeader();
+}));
+
 builder.Services.AddScoped<IService<Customer>, CustomerService>();
 builder.Services.AddScoped<IService<Order>, OrderService>();
 

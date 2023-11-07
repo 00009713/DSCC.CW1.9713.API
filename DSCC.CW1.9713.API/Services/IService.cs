@@ -4,10 +4,10 @@ namespace DSCC.CW1._9713.API.Services
 {
     public interface IService<T>
     {
-        void Create(T item);
-        void Update(T item);
-        void Delete(int Id);
-        T? GetById(int Id);
-        IEnumerable<T> GetAll();
+        Task CreateAsync(T item);
+        Task UpdateAsync(T item);
+        Task DeleteAsync(int Id);
+        Task<T> GetByIdAsync(int Id);
+        Task<IEnumerable<T>> GetAllAsync();
     }
 }

@@ -13,40 +13,42 @@ namespace DSCC.CW1._9713.API.Services
             this.dbContext = dbContext;
         }
 
-        public void Create(Order item)
+        public async Task CreateAsync(Order item)
         {
             dbContext.Add(item);
-            Save();
+            await SaveAsync();
         }
 
-        public void Delete(int Id)
+        public async Task DeleteAsync(int Id)
         {
-            var order = dbContext.Orders.Find(Id);
-            dbContext.Orders.Remove(order);
-            Save();
+            var order = await dbContext.Orders.FindAsync(Id);
+            if (order != null)
+            {
+                dbContext.Orders.Remove(order);
+                await SaveAsync();
+            }
         }
 
-        public IEnumerable<Order> GetAll()
+        public async Task<IEnumerable<Order>> GetAllAsync()
         {
-            return dbContext.Orders.ToList();
+            return await dbContext.Orders.ToListAsync();
         }
 
-        public Order GetById(int Id)
+        public async Task<Order?> GetByIdAsync(int Id)
         {
-            var prod = dbContext.Orders.Find(Id);
-            return prod;
+            return await dbContext.Orders.FindAsync(Id);
         }
 
-        public void Update(Order item)
+        public async Task UpdateAsync(Order item)
         {
             dbContext.Entry(item).State = EntityState.Modified;
-            Save();
+            await SaveAsync();
         }
 
         // Method for saving the changes
-        public void Save()
+        public async Task SaveAsync()
         {
-            dbContext.SaveChanges();
+            await dbContext.SaveChangesAsync();
         }
     }
 }

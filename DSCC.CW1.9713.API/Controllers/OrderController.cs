@@ -16,16 +16,16 @@ namespace DSCC.CW1._9713.API.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAllOrders()
+        public async Task<IActionResult> GetAllOrders()
         {
-            var orders = _orderService.GetAll();
+            var orders = await _orderService.GetAllAsync();
             return Ok(orders);
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetOrder(int id)
+        public async Task<IActionResult> GetOrder(int id)
         {
-            var order = _orderService.GetById(id);
+            var order = await _orderService.GetByIdAsync(id);
             if (order == null)
             {
                 return NotFound();
@@ -34,25 +34,25 @@ namespace DSCC.CW1._9713.API.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateOrder(Order order)
+        public async Task<IActionResult> CreateOrder([FromBody] Order order)
         {
             if (ModelState.IsValid)
             {
-                _orderService.Create(order);
+                await _orderService.CreateAsync(order);
                 return CreatedAtAction(nameof(GetOrder), new { id = order.Id }, order);
             }
             return BadRequest(ModelState);
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdateOrder(int id, Order updatedOrder)
+        public async Task<IActionResult> UpdateOrder(int id, [FromBody] Order updatedOrder)
         {
             if (id != updatedOrder.Id)
             {
                 return BadRequest("Invalid request");
             }
 
-            var existingOrder = _orderService.GetById(id);
+            var existingOrder = await _orderService.GetByIdAsync(id);
 
             if (existingOrder == null)
             {
@@ -64,20 +64,20 @@ namespace DSCC.CW1._9713.API.Controllers
             existingOrder.Name = updatedOrder.Name;
             existingOrder.TotalPrice = updatedOrder.TotalPrice;
 
-            _orderService.Update(existingOrder);
+            await _orderService.UpdateAsync(existingOrder);
             return Ok(existingOrder);
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteOrder(int id)
+        public async Task<IActionResult> DeleteOrder(int id)
         {
-            var order = _orderService.GetById(id);
+            var order = await _orderService.GetByIdAsync(id);
             if (order == null)
             {
                 return NotFound();
             }
 
-            _orderService.Delete(id);
+            await _orderService.DeleteAsync(id);
             return NoContent();
         }
     }
